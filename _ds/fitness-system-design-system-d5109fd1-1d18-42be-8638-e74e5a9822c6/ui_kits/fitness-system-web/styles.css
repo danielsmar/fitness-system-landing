@@ -1,0 +1,74 @@
+/* UI kit shared styles — imports brand tokens from root CSS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-brand-primary: #3eb1a7;
+  --color-gray-50: #f9fafb; --color-gray-100: #f3f3f3; --color-gray-200: #e1e1e1;
+  --color-gray-300: #cecfcf; --color-gray-400: #bcbdbe; --color-gray-500: #aaabac;
+  --color-gray-600: #919294; --color-gray-700: #6d6e6f; --color-gray-800: #48494a;
+  --color-dark-100: #3a3a3a; --color-dark-200: #313131; --color-dark-300: #2d2d2d;
+  --color-dark-400: #222; --color-dark-500: #1f1f1f; --color-dark-600: #1d1d1d;
+  --color-dark-700: #181818; --color-dark-800: #141414;
+  --color-cyan-100: #10fafa; --color-cyan-200: #05eded; --color-cyan-300: #04d5d5;
+  --color-cyan-400: #04bdbd; --color-cyan-500: #03a6a6; --color-cyan-600: #038d8d;
+  --color-cyan-700: #027676; --color-cyan-800: #014747;
+  --color-danger-300: #ef6365; --color-danger-500: #ea3a3d;
+  --color-success-500: #1ad598; --color-success-800: #247059;
+  --color-warning-500: #f9b959;
+  --bg: var(--color-dark-500); --surface: var(--color-dark-300);
+  --surface-raised: var(--color-dark-200); --fg: var(--color-gray-200);
+  --fg-muted: var(--color-gray-500); --fg-placeholder: var(--color-gray-600);
+  --stroke: var(--color-dark-100); --stroke-input: var(--color-gray-800);
+  --primary: var(--color-cyan-500); --ring: var(--color-cyan-500);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--fg); font-family: 'Outfit', system-ui, sans-serif; font-size: 16px; -webkit-font-smoothing: antialiased; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; }
+a { color: var(--color-cyan-500); text-decoration: none; }
+a:hover { color: var(--color-cyan-400); text-decoration: underline; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-dark-100); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gray-800); }
+
+/* --- Reusable primitives --- */
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 12px; font-weight: 500; font-size: 16px; height: 44px; padding: 0 18px; border: 1px solid transparent; transition: all .15s; white-space: nowrap; color: var(--color-dark-800); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-primary { background: var(--color-cyan-500); color: var(--color-dark-800); }
+.btn-primary:hover { background: var(--color-cyan-600); }
+.btn-outline { background: transparent; color: var(--fg); border-color: var(--stroke); }
+.btn-outline:hover { background: var(--color-dark-200); }
+.btn-ghost { background: transparent; color: var(--fg); }
+.btn-ghost:hover { background: var(--color-dark-200); }
+.btn-destructive { background: var(--color-danger-300); color: var(--color-dark-800); }
+.btn-sm { height: 36px; padding: 0 12px; font-size: 14px; border-radius: 10px; }
+.btn-xs { height: 32px; padding: 0 10px; font-size: 13px; border-radius: 10px; }
+.btn-icon { width: 40px; height: 40px; padding: 0; border-radius: 10px; }
+
+.input { width: 100%; height: 44px; background: var(--surface-raised); border: 1px solid var(--stroke-input); border-radius: 12px; color: var(--fg); padding: 0 14px; font-size: 16px; outline: none; transition: border-color .15s, box-shadow .15s; }
+.input::placeholder { color: var(--fg-placeholder); }
+.input:focus { border-color: var(--ring); box-shadow: inset 0 16px 32px -8px rgba(12,12,13,.4), 0 0 0 3px rgba(3,166,166,.35); }
+
+.card { background: var(--surface); border: 1px solid var(--stroke); border-radius: 16px; box-shadow: 0 1px 3px rgba(16,24,40,.08), 0 1px 2px rgba(16,24,40,.03); }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 12px; border-radius: 999px; font-size: 13px; border: 1px solid; }
+.chip-green { background: rgba(26,213,152,.2); border-color: var(--color-success-500); color: var(--color-success-500); }
+.chip-red { background: rgba(234,58,61,.2); border-color: var(--color-danger-500); color: var(--color-danger-500); }
+.chip-cyan { background: rgba(3,166,166,.2); border-color: var(--color-cyan-500); color: var(--color-cyan-500); padding: 0 10px; }
+.chip-warn { background: rgba(249,185,89,.2); border-color: var(--color-warning-500); color: var(--color-warning-500); padding: 0 10px; }
+.chip-train { background: rgba(4,189,189,.12); color: var(--color-cyan-400); border-radius: 10px; font-size: 12px; height: 22px; padding: 0 10px; border: none; }
+.chip-muscle { background: var(--color-dark-200); color: var(--color-gray-100); border-radius: 10px; font-size: 12px; height: 22px; padding: 0 10px; border: none; }
+
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-cyan-200); }
+
+.avatar { width: 36px; height: 36px; border-radius: 999px; overflow: hidden; background: var(--color-dark-200); display: inline-flex; align-items: center; justify-content: center; color: var(--fg); font-weight: 600; font-size: 14px; border: 1px solid var(--stroke); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.icon-sm { width: 16px; height: 16px; }
+.icon-lg { width: 24px; height: 24px; }

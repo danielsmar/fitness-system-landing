@@ -1,0 +1,208 @@
+/* ==============================================================
+   Fitness System — Colors & Typography
+   Source of truth: src/app/globals.css from fitnessystem/fitness-web
+   Figma: "Fitness System | Design UI" → Guia de Estilo
+   ============================================================== */
+
+/* Outfit — loaded from Google Fonts (Inter + Poppins also used sparsely).
+   If you prefer self-hosted, drop .ttf/.woff2 files in /fonts and swap the @font-face. */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&display=swap');
+
+:root {
+  /* --------------------------------------------------------------
+     PRIMITIVES · PALETTE
+     Naming matches the product codebase (Tailwind v4 @theme tokens)
+     -------------------------------------------------------------- */
+
+  /* Brand */
+  --color-brand-primary: oklch(0.6938 0.1028 186.9); /* #3eb1a7 — logomark */
+
+  /* Gray (main neutrals) */
+  --color-gray-50:  oklch(0.9846 0.0017 247.84); /* #f9fafb */
+  --color-gray-100: oklch(0.9642 0 0);           /* #f3f3f3 */
+  --color-gray-200: oklch(0.9097 0 0);           /* #e1e1e1 */
+  --color-gray-300: oklch(0.8537 0.0011 197.14); /* #cecfcf */
+  --color-gray-400: oklch(0.7979 0.0018 247.84); /* #bcbdbe */
+  --color-gray-500: oklch(0.7407 0.0018 247.85); /* #aaabac */
+  --color-gray-600: oklch(0.6597 0.0032 264.54); /* #919294 */
+  --color-gray-700: oklch(0.5377 0.002  247.86); /* #6d6e6f */
+  --color-gray-800: oklch(0.4048 0.0021 247.88); /* #48494a */
+
+  /* Dark (main surfaces — product is dark-first) */
+  --color-dark-100: oklch(0.3485 0 0); /* #3a3a3a */
+  --color-dark-200: oklch(0.3132 0 0); /* #313131 */
+  --color-dark-300: oklch(0.2972 0 0); /* #2d2d2d */
+  --color-dark-400: oklch(0.252  0 0); /* #222222 */
+  --color-dark-500: oklch(0.2393 0 0); /* #1f1f1f */
+  --color-dark-600: oklch(0.2308 0 0); /* #1d1d1d */
+  --color-dark-700: oklch(0.209  0 0); /* #181818 */
+  --color-dark-800: oklch(0.1913 0 0); /* #141414 */
+
+  /* Cyan (primary action) */
+  --color-cyan-100: oklch(0.8925 0.1512 194.79); /* #10fafa */
+  --color-cyan-200: oklch(0.8568 0.1459 194.77); /* #05eded */
+  --color-cyan-300: oklch(0.7906 0.1346 194.77); /* #04d5d5 */
+  --color-cyan-400: oklch(0.723  0.123  194.78); /* #04bdbd */
+  --color-cyan-500: oklch(0.6567 0.1117 194.78); /* #03a6a6 */
+  --color-cyan-600: oklch(0.5828 0.099  194.78); /* #038d8d */
+  --color-cyan-700: oklch(0.5125 0.0871 194.78); /* #027676 */
+  --color-cyan-800: oklch(0.3605 0.0611 194.78); /* #014747 */
+
+  /* Danger */
+  --color-danger-100: oklch(0.7538 0.1228 19.74); /* #f38e8f */
+  --color-danger-200: oklch(0.6998 0.157  21.01); /* #f07173 */
+  --color-danger-300: oklch(0.6767 0.1733 22.07); /* #ef6365 */
+  --color-danger-400: oklch(0.6354 0.2017 24.38); /* #ec4749 */
+  --color-danger-500: oklch(0.6187 0.212  25.22); /* #ea3a3d */
+  --color-danger-600: oklch(0.5502 0.1778 24.16); /* #c4373a */
+  --color-danger-700: oklch(0.5228 0.1117 19.5);  /* #a04c4f */
+  --color-danger-800: oklch(0.413  0.097  19.68); /* #773235 */
+
+  /* Success */
+  --color-success-100: oklch(0.8685 0.1236 169.16); /* #76eec6 */
+  --color-success-200: oklch(0.8442 0.1466 167.2);  /* #53eab8 */
+  --color-success-300: oklch(0.8238 0.1646 164.34); /* #31e6a9 */
+  --color-success-400: oklch(0.8125 0.1701 163.21); /* #20e3a2 */
+  --color-success-500: oklch(0.7743 0.1625 163.39); /* #1ad598 */
+  --color-success-600: oklch(0.682  0.1379 164.8);  /* #1db383 */
+  --color-success-700: oklch(0.5871 0.1112 166.75); /* #21916e */
+  --color-success-800: oklch(0.4921 0.083  169.24); /* #247059 */
+
+  /* Warning */
+  --color-warning-100: oklch(0.8975 0.0828 77.71); /* #fcd79f */
+  --color-warning-200: oklch(0.8732 0.1019 77.3);  /* #fbcd87 */
+  --color-warning-300: oklch(0.8498 0.1188 76.3);  /* #fac370 */
+  --color-warning-400: oklch(0.8359 0.1266 75.31); /* #f9bd64 */
+  --color-warning-500: oklch(0.8271 0.1341 75);    /* #f9b959 */
+  --color-warning-600: oklch(0.7291 0.1115 75.36); /* #d09d51 */
+  --color-warning-700: oklch(0.6277 0.0881 76.12); /* #a78148 */
+  --color-warning-800: oklch(0.5192 0.0606 75.86); /* #7d6440 */
+
+  /* Blue / Amethyst / Orange — supporting accents (charts, tags) */
+  --color-blue-500:    #1085fa;
+  --color-amethyst-500:#975bd4;
+  --color-orange-500:  #f4966a;
+
+  /* --------------------------------------------------------------
+     SEMANTIC TOKENS · DARK THEME (default in product)
+     -------------------------------------------------------------- */
+  --bg:                 var(--color-dark-500);
+  --surface:            var(--color-dark-300);   /* cards */
+  --surface-raised:     var(--color-dark-200);   /* inputs, popovers */
+  --surface-sidebar:    var(--color-dark-300);
+  --fg:                 var(--color-gray-200);   /* body text */
+  --fg-muted:           var(--color-gray-500);   /* secondary text */
+  --fg-placeholder:     var(--color-gray-600);
+  --stroke:             var(--color-dark-100);
+  --stroke-input:       var(--color-gray-800);
+  --primary:            var(--color-cyan-500);   /* primary action */
+  --primary-hover:      var(--color-cyan-600);
+  --ring:               var(--color-cyan-500);
+  --destructive:        var(--color-danger-300);
+
+  /* Radii, shadows, spacing used across the system */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;  /* inputs, buttons */
+  --radius-lg: 16px;  /* cards, dialog panels */
+  --radius-xl: 18px;  /* hero / auth panel */
+  --radius-2xl: 24px; /* style-guide blocks */
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(16,24,40,0.03);
+  --shadow-sm: 0 1px 3px rgba(16,24,40,0.08), 0 1px 2px rgba(16,24,40,0.03);
+  --shadow-md: 0 4px 8px -2px rgba(16,24,40,0.10), 0 2px 4px -2px rgba(16,24,40,0.06);
+  --shadow-inset-input: inset 0 16px 32px -8px rgba(12,12,13,0.4);
+  --shadow-glow-cyan:
+      0 0 10px rgba(3,166,166,0.8),
+      0 0 20px rgba(3,166,166,0.5),
+      0 0 30px rgba(3,166,166,0.3);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* --------------------------------------------------------------
+     TYPOGRAPHY
+     -------------------------------------------------------------- */
+  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-utility: 'Inter', system-ui, sans-serif; /* report headings / numeric */
+
+  /* Type scale (px, matching Figma usage) */
+  --text-xs:  12px;
+  --text-sm:  14px;
+  --text-base:16px;
+  --text-md:  18px;
+  --text-lg:  20px;
+  --text-xl:  24px;
+  --text-2xl: 30px;
+  --text-3xl: 36px;
+  --text-4xl: 40px;
+
+  /* Semantic type roles */
+  --h1-size: 40px;  --h1-weight: 700; --h1-line: 100%;
+  --h2-size: 36px;  --h2-weight: 700; --h2-line: 100%;
+  --h3-size: 30px;  --h3-weight: 700; --h3-line: 100%;
+  --h4-size: 24px;  --h4-weight: 700; --h4-line: 110%;
+  --h5-size: 20px;  --h5-weight: 600; --h5-line: 120%;
+  --h6-size: 18px;  --h6-weight: 600; --h6-line: 120%;
+  --body-size: 16px; --body-weight: 400; --body-line: 140%;
+  --label-size: 14px; --label-weight: 500; --label-line: 120%;
+  --caption-size: 12px; --caption-weight: 400; --caption-line: 130%;
+  --eyebrow-size: 14px; --eyebrow-weight: 700; --eyebrow-line: 100%; /* STATE / BASE / MAIN marks */
+}
+
+/* Light theme override (product supports both, defaults to dark) */
+.theme-light {
+  --bg:             var(--color-gray-100);
+  --surface:        var(--color-gray-50);
+  --surface-raised: var(--color-gray-50);
+  --surface-sidebar:var(--color-gray-50);
+  --fg:             var(--color-dark-200);
+  --fg-muted:       var(--color-gray-700);
+  --fg-placeholder: var(--color-gray-700);
+  --stroke:         var(--color-gray-200);
+  --stroke-input:   var(--color-gray-400);
+  --primary:        var(--color-cyan-600);
+  --primary-hover:  var(--color-cyan-700);
+  --destructive:    var(--color-danger-500);
+}
+
+/* Base reset + defaults */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,h2,h3,h4,h5,h6 { margin: 0; font-family: var(--font-sans); color: var(--fg); }
+h1 { font-size: var(--h1-size); font-weight: var(--h1-weight); line-height: var(--h1-line); }
+h2 { font-size: var(--h2-size); font-weight: var(--h2-weight); line-height: var(--h2-line); }
+h3 { font-size: var(--h3-size); font-weight: var(--h3-weight); line-height: var(--h3-line); }
+h4 { font-size: var(--h4-size); font-weight: var(--h4-weight); line-height: var(--h4-line); }
+h5 { font-size: var(--h5-size); font-weight: var(--h5-weight); line-height: var(--h5-line); }
+h6 { font-size: var(--h6-size); font-weight: var(--h6-weight); line-height: var(--h6-line); }
+
+p       { margin: 0; font-size: var(--body-size); }
+small   { font-size: var(--caption-size); color: var(--fg-muted); }
+label, .label { font-size: var(--label-size); font-weight: var(--label-weight); color: var(--fg); }
+.eyebrow { font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); letter-spacing: .04em; text-transform: uppercase; color: var(--color-cyan-200); }
+
+code, pre, .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+a { color: var(--color-cyan-500); text-decoration: none; }
+a:hover { color: var(--color-cyan-400); text-decoration: underline; }

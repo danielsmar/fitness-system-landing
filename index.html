@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/fitness-system-design-system-d5109fd1-1d18-42be-8638-e74e5a9822c6/colors_and_type.css">
+<link rel="stylesheet" href="_ds/fitness-system-design-system-d5109fd1-1d18-42be-8638-e74e5a9822c6/preview/card-shell.css">
+<link rel="stylesheet" href="_ds/fitness-system-design-system-d5109fd1-1d18-42be-8638-e74e5a9822c6/ui_kits/fitness-system-web/styles.css">
+<script src="_ds/fitness-system-design-system-d5109fd1-1d18-42be-8638-e74e5a9822c6/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<meta name="ext-resource-dependency" content="assets/img-dashboard.png" data-resource-id="dash" />
+<meta name="ext-resource-dependency" content="assets/img-app-treino.png" data-resource-id="app" />
+<meta name="ext-resource-dependency" content="assets/img-professor-avaliacao.png" data-resource-id="prof" />
+<meta name="ext-resource-dependency" content="assets/img-avaliacao.png" data-resource-id="aval" />
+<meta name="ext-resource-dependency" content="assets/img-treino-ia.png" data-resource-id="ia" />
+<meta name="ext-resource-dependency" content="assets/img-fabio.png" data-resource-id="fabio" />
+<meta name="ext-resource-dependency" content="assets/img-didi.png" data-resource-id="didi" />
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { background: #1f1f1f; color: #e1e1e1; font-family: 'Outfit', system-ui, sans-serif; overflow-x: hidden; }
+  a { color: #03a6a6; text-decoration: none; }
+  a:hover { color: #04d5d5; }
+  ::selection { background: rgba(3,166,166,.35); }
+  @keyframes fsFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  @keyframes fsGlow { 0%,100% { opacity:.45 } 50% { opacity:.75 } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto }
+    [data-reveal] { opacity: 1 !important; transform: none !important }
+  }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#1f1f1f">
+  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" fill="#1f1f1f"/><path d="M40 78V42h26" stroke="#03a6a6" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M40 60h20" stroke="#04d5d5" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="76" cy="74" r="6" fill="#03a6a6"/></svg>
+</template>
+
+<div style="position:relative;width:100%;background:#1f1f1f;overflow:hidden">
+
+  <header id="fs-nav" style="position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;border-bottom:1px solid transparent">
+    <div id="fs-progress" style="position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,#03a6a6,#05eded);transform:scaleX(0);transform-origin:0 50%"></div>
+    <div style="max-width:1240px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:32px">
+      <a href="#topo" style="display:flex;align-items:center;flex:0 0 auto">
+        <img src="assets/logo-horizontal-cyan.svg" alt="Fitness System" style="height:30px;display:block">
+      </a>
+      <nav id="fs-navlinks" style="display:flex;align-items:center;gap:26px;margin-left:auto">
+        <a href="#problema" style="color:#aaabac;font-size:15px;font-weight:500;white-space:nowrap">Por que</a>
+        <a href="#recursos" style="color:#aaabac;font-size:15px;font-weight:500;white-space:nowrap">Recursos</a>
+        <a href="#como-funciona" style="color:#aaabac;font-size:15px;font-weight:500;white-space:nowrap">Como funciona</a>
+        <a href="#autoridade" style="color:#aaabac;font-size:15px;font-weight:500;white-space:nowrap">Autoridade</a>
+        <a href="#precos" style="color:#aaabac;font-size:15px;font-weight:500;white-space:nowrap">Preços</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto">
+        <a id="fs-nav-entrar" href="#entrar" style="display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:12px;border:1px solid #48494a;color:#e1e1e1;font-size:15px;font-weight:500;white-space:nowrap;transition:background .2s ease" style-hover="background:#2d2d2d;color:#e1e1e1">Entrar</a>
+        <a href="#precos" style="display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:15px;font-weight:600;transition:background .2s ease" style-hover="background:#038d8d;color:#f3f3f3">Começar agora</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="topo" style="position:relative;padding:clamp(124px,16vh,172px) 24px clamp(76px,11vh,120px);overflow:hidden">
+    <div style="position:absolute;top:-260px;left:50%;transform:translateX(-50%);width:1100px;height:700px;background:radial-gradient(50% 50% at 50% 50%,rgba(3,166,166,.20) 0%,rgba(3,166,166,0) 70%);pointer-events:none;animation:fsGlow 6s ease-in-out infinite"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(70% 55% at 50% 25%,#000 0%,transparent 100%);-webkit-mask-image:radial-gradient(70% 55% at 50% 25%,#000 0%,transparent 100%);pointer-events:none"></div>
+
+    <div style="position:relative;max-width:1000px;margin:0 auto;text-align:center">
+      <div data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 14px;border-radius:9999px;border:1px solid rgba(3,166,166,.4);background:rgba(3,166,166,.1)">
+        <span style="width:6px;height:6px;border-radius:9999px;background:#05eded;display:block"></span>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#05eded">Construída para profissionais de elite</span>
+      </div>
+
+      <h1 data-reveal="up" data-delay="90" style="opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out;margin:26px 0 0;font-size:clamp(38px,5.4vw,66px);font-weight:700;line-height:1.04;letter-spacing:-.025em;color:#f3f3f3;text-wrap:balance">
+        Ciência para escalar: <span style="color:#04d5d5">avaliações e treinos de elite</span> na palma da sua mão
+      </h1>
+
+      <p data-reveal="up" data-delay="180" style="opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out;margin:26px auto 0;max-width:720px;font-size:19px;line-height:1.6;color:#aaabac;text-wrap:pretty">
+        A plataforma para personal trainers e consultores que querem prescrever com mais precisão, elevar a percepção de valor do serviço e crescer sem depender de improviso.
+      </p>
+
+      <div data-reveal="up" data-delay="260" style="opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out;margin:38px 0 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+        <a href="#precos" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:17px;font-weight:600;box-shadow:0 0 0 0 rgba(3,166,166,.5);transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 32px -4px rgba(3,166,166,.55)">
+          Começar agora
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        <a href="#como-funciona" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:12px;border:1px solid #48494a;color:#e1e1e1;font-size:17px;font-weight:500;transition:background .2s ease" style-hover="background:#2d2d2d;color:#e1e1e1">Ver como funciona</a>
+      </div>
+
+      <div data-reveal="up" data-delay="340" style="opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out;margin:30px 0 0;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#919294">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          Avaliações mais inteligentes
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#919294">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          Prescrição com base científica
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#919294">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          Escala com autoridade
+        </span>
+      </div>
+    </div>
+
+    <div data-reveal="scale" data-delay="200" style="opacity:0;transform:scale(.95);transition:opacity .8s ease-out,transform .8s ease-out;position:relative;width:min(1320px,116vh);max-width:100%;margin:clamp(40px,6vh,72px) auto 0">
+      <div data-parallax="-0.045" style="position:relative;border-radius:18px;border:1px solid #3a3a3a;background:#181818;box-shadow:0 40px 120px -40px rgba(3,166,166,.35),0 24px 60px -24px rgba(0,0,0,.8);overflow:hidden;aspect-ratio:16/9">
+        <image-slot id="lp-hero-dashboard" shape="rect" src="{{ imgDash }}" placeholder="Print do dashboard da plataforma — 1600×900"></image-slot>
+      </div>
+      <div style="position:absolute;left:0;bottom:-64px;width:23%;min-width:170px;aspect-ratio:9/17;border-radius:26px;border:1px solid #3a3a3a;background:#181818;box-shadow:0 30px 70px -20px rgba(0,0,0,.85);overflow:hidden;animation:fsFloat 6s ease-in-out infinite">
+        <image-slot id="lp-hero-mobile" shape="rect" src="{{ imgApp }}" placeholder="Tela do treino no celular — 900×1700"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;padding:120px 24px 96px">
+    <div data-reveal="up" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;padding:36px 32px;border-radius:20px;border:1px solid #3a3a3a;background:#2d2d2d">
+      <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+        <span style="font-size:clamp(32px,3.4vw,44px);font-weight:700;line-height:1;color:#f3f3f3"><span data-count="30">0</span> anos</span>
+        <span style="font-size:15px;color:#919294">de prática do Prof. Fábio Casagrande</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+        <span style="font-size:clamp(32px,3.4vw,44px);font-weight:700;line-height:1;color:#f3f3f3"><span data-count="6000" data-sep="1">0</span>+</span>
+        <span style="font-size:15px;color:#919294">exercícios na biblioteca</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+        <span style="font-size:clamp(32px,3.4vw,44px);font-weight:700;line-height:1;color:#f3f3f3">ACSM</span>
+        <span style="font-size:15px;color:#919294">protocolos científicos aplicados</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;text-align:center">
+        <span style="font-size:clamp(32px,3.4vw,44px);font-weight:700;line-height:1;color:#f3f3f3">ex-NBA</span>
+        <span style="font-size:15px;color:#919294">Didi Louzada, sócio do projeto</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="problema" style="position:relative;padding:clamp(64px,9vh,96px) 24px;background:#181818;border-top:1px solid #2d2d2d;border-bottom:1px solid #2d2d2d">
+    <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:64px;align-items:center">
+      <div>
+        <span data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">O impasse do profissional</span>
+        <h2 data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">Seu atendimento cresce, mas a qualidade não pode cair</h2>
+        <p data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:22px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Quando a rotina aperta, muitos profissionais acabam presos entre duas opções ruins: atender mais gente com menos profundidade ou manter a qualidade sacrificando escala.</p>
+        <p data-reveal="up" data-delay="200" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Sem método, sem padronização e sem inteligência na prescrição, o serviço perde força, a percepção de valor cai e o crescimento vira peso operacional.</p>
+        <p data-reveal="up" data-delay="260" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:28px 0 0;padding-left:18px;border-left:2px solid #03a6a6;font-size:19px;font-weight:500;line-height:1.5;color:#e1e1e1">Escalar não deveria significar simplificar demais sua entrega.</p>
+        <a data-reveal="up" data-delay="320" href="#precos" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out,background .2s ease,box-shadow .3s ease;margin:32px 0 0;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:16px;font-weight:600" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 28px -6px rgba(3,166,166,.55)">
+          Ver planos e resolver isso
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+      <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(28px);transition:opacity .8s ease-out,transform .8s ease-out;justify-self:center;width:min(100%,440px);position:relative;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:4/3">
+        <image-slot id="lp-problema" shape="rect" src="{{ imgProf }}" placeholder="Foto: profissional apresentando a avaliação"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos" style="position:relative;padding:clamp(72px,10vh,112px) 24px">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="max-width:800px">
+        <span data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">A plataforma</span>
+        <h2 data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">Não é mais um software de treino. É uma plataforma para quem entrega acima da média.</h2>
+        <p data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:22px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">A Fitness System combina inteligência, base científica e experiência de uso para transformar avaliação, prescrição e acompanhamento em uma entrega mais precisa, mais personalizada e muito mais premium na percepção do aluno.</p>
+      </div>
+
+      <div style="margin:56px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+        <div data-reveal="up" data-delay="60" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;padding:26px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;box-shadow:0 1px 3px rgba(16,24,40,.08)">
+          <div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);color:#04d5d5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>
+          </div>
+          <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;line-height:1.25;color:#f3f3f3">Escala com consistência</h3>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#aaabac">Atenda mais sem perder padrão, clareza e qualidade na entrega.</p>
+        </div>
+        <div data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;padding:26px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;box-shadow:0 1px 3px rgba(16,24,40,.08)">
+          <div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);color:#04d5d5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M12 18h.01"></path></svg>
+          </div>
+          <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;line-height:1.25;color:#f3f3f3">Tudo na palma da mão</h3>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#aaabac">Praticidade para aplicar, acompanhar e evoluir o atendimento em qualquer lugar.</p>
+        </div>
+        <div data-reveal="up" data-delay="220" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;padding:26px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;box-shadow:0 1px 3px rgba(16,24,40,.08)">
+          <div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);color:#04d5d5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.7 6.3.9-4.6 4.3 1.2 6.1-5.6-3.1-5.6 3.1 1.2-6.1L3 9.6l6.3-.9z"></path></svg>
+          </div>
+          <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;line-height:1.25;color:#f3f3f3">Experiência de alto nível</h3>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#aaabac">Uma plataforma que valoriza seu trabalho e aumenta a percepção de profissionalismo do aluno.</p>
+        </div>
+        <div data-reveal="up" data-delay="300" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;padding:26px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;box-shadow:0 1px 3px rgba(16,24,40,.08)">
+          <div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);color:#04d5d5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <h3 style="margin:18px 0 0;font-size:20px;font-weight:600;line-height:1.25;color:#f3f3f3">Base científica real</h3>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#aaabac">Mais profundidade para avaliar, interpretar e prescrever com segurança técnica.</p>
+        </div>
+      </div>
+
+      <p data-reveal="up" data-delay="120" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:56px auto 0;max-width:820px;text-align:center;font-size:clamp(22px,2.4vw,30px);font-weight:600;line-height:1.35;color:#f3f3f3">“Quando sua ferramenta sobe de nível, sua entrega sobe junto.”</p>
+      <div data-reveal="up" data-delay="180" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:32px 0 0;display:flex;justify-content:center">
+        <a href="#precos" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:16px;font-weight:600;transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 28px -6px rgba(3,166,166,.55)">
+          Começar agora
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" style="position:relative;padding:clamp(72px,10vh,112px) 24px;background:#181818;border-top:1px solid #2d2d2d;border-bottom:1px solid #2d2d2d">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="max-width:760px;margin:0 auto;text-align:center">
+        <span data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">Como funciona</span>
+        <h2 data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">Veja como a Fitness System entra na sua rotina</h2>
+        <p data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:20px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Da coleta de dados à entrega do treino, a plataforma transforma informação em uma prescrição mais inteligente, personalizada e profissional.</p>
+      </div>
+
+      <div style="margin:72px 0 0;display:flex;flex-direction:column;gap:96px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
+          <div data-reveal="left" style="opacity:0;transform:translateX(-28px);transition:opacity .8s ease-out,transform .8s ease-out">
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);font-size:17px;font-weight:700;color:#04d5d5">01</span>
+              <span style="height:1px;flex:1;background:linear-gradient(90deg,#3a3a3a,transparent)"></span>
+            </div>
+            <h3 style="margin:22px 0 0;font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2;color:#f3f3f3">Você conduz a avaliação com método e profundidade</h3>
+            <p style="margin:16px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Anamnese, antropometria, perimetria, PAR-Q+, dinamometria, cardiorrespiratório e posturologia em um fluxo organizado dentro da plataforma — tudo registrado com padrão técnico e histórico do aluno.</p>
+            <p style="margin:20px 0 0;font-size:16px;font-weight:500;color:#04d5d5">Quanto melhor a avaliação, melhor a prescrição que vem depois.</p>
+          </div>
+          <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(28px);transition:opacity .8s ease-out,transform .8s ease-out;justify-self:center;width:min(100%,96vh);position:relative;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:4/3">
+            <image-slot id="lp-passo-1" shape="rect" src="{{ imgAval }}" placeholder="Print: avaliação física completa na plataforma"></image-slot>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
+          <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(28px);transition:opacity .8s ease-out,transform .8s ease-out;order:2;justify-self:center;width:min(100%,96vh);position:relative;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:4/3">
+            <image-slot id="lp-passo-2" shape="rect" src="{{ imgIa }}" placeholder="Print: prescrição de treino montada pela IA"></image-slot>
+          </div>
+          <div data-reveal="left" style="opacity:0;transform:translateX(-28px);transition:opacity .8s ease-out,transform .8s ease-out;order:3">
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);font-size:17px;font-weight:700;color:#04d5d5">02</span>
+              <span style="height:1px;flex:1;background:linear-gradient(90deg,#3a3a3a,transparent)"></span>
+            </div>
+            <h3 style="margin:22px 0 0;font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2;color:#f3f3f3">A IA cruza os dados da avaliação e monta a prescrição</h3>
+            <p style="margin:16px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Com a avaliação concluída, a IA entra em ação: cruza as informações registradas e estrutura o treino com muito mais coerência, personalização e critério técnico — a partir dos seus dados, não de suposições.</p>
+            <p style="margin:20px 0 0;font-size:16px;font-weight:500;color:#04d5d5">Menos achismo, mais critério na hora de prescrever.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
+          <div data-reveal="left" style="opacity:0;transform:translateX(-28px);transition:opacity .8s ease-out,transform .8s ease-out">
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(3,166,166,.12);border:1px solid rgba(3,166,166,.35);font-size:17px;font-weight:700;color:#04d5d5">03</span>
+              <span style="height:1px;flex:1;background:linear-gradient(90deg,#3a3a3a,transparent)"></span>
+            </div>
+            <h3 style="margin:22px 0 0;font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2;color:#f3f3f3">O aluno recebe, executa e você acompanha com mais clareza</h3>
+            <p style="margin:16px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">Com a prescrição pronta, o aluno acessa um treino mais bem apresentado, didático e profissional. Isso melhora a experiência de uso, facilita a execução e reforça a percepção de valor sobre o seu trabalho.</p>
+            <p style="margin:20px 0 0;font-size:16px;font-weight:500;color:#04d5d5">Mais valor percebido para o aluno, mais controle para o profissional.</p>
+          </div>
+          <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(28px);transition:opacity .8s ease-out,transform .8s ease-out;justify-self:center;width:min(380px,42vh);position:relative;border-radius:28px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:9/17;box-shadow:0 30px 70px -20px rgba(0,0,0,.85)">
+            <image-slot id="lp-passo-3" shape="rect" src="{{ imgApp }}" placeholder="Print: treino na visão do aluno (app)"></image-slot>
+          </div>
+        </div>
+      </div>
+
+      <p data-reveal="up" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:72px auto 0;max-width:820px;text-align:center;font-size:16px;line-height:1.6;color:#919294">Um fluxo único que une avaliação, prescrição e acompanhamento longitudinal em uma lógica de inteligência aplicada.</p>
+      <div data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:28px 0 0;display:flex;justify-content:center">
+        <a href="#precos" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:17px;font-weight:600;transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 32px -6px rgba(3,166,166,.55)">
+          Quero esse fluxo na minha rotina
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ mostrarAutoridade }}" hint-placeholder-val="{{ true }}">
+  <section id="autoridade" style="position:relative;padding:clamp(72px,10vh,112px) 24px;overflow:hidden">
+    <div style="position:absolute;top:20%;left:-10%;width:620px;height:620px;background:radial-gradient(50% 50% at 50% 50%,rgba(3,166,166,.13) 0%,rgba(3,166,166,0) 70%);pointer-events:none"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:64px;align-items:center">
+      <div data-reveal="left" style="opacity:0;transform:translateX(-28px);transition:opacity .8s ease-out,transform .8s ease-out">
+        <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">Autoridade</span>
+        <h2 style="margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">Coloque 30 anos de experiência e uma chancela de elite dentro da sua entrega</h2>
+        <p style="margin:22px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">A Fitness System foi construída a partir da bagagem do <strong style="color:#e1e1e1;font-weight:600">Prof. Fábio Casagrande</strong>, nome com 30 anos de prática e reconhecimento acadêmico no universo da avaliação, do treinamento e da performance humana.</p>
+        <p style="margin:16px 0 0;font-size:17px;line-height:1.65;color:#aaabac;text-wrap:pretty">E é fortalecida pela presença de <strong style="color:#e1e1e1;font-weight:600">Didi Louzada</strong>, atleta de seleção brasileira, ex-NBA e sócio do projeto, que adiciona à marca um endosso de performance raro no mercado fitness.</p>
+        <p style="margin:28px 0 0;padding-left:18px;border-left:2px solid #03a6a6;font-size:19px;font-weight:500;line-height:1.5;color:#e1e1e1">Mais autoridade para você. Mais valor percebido para o seu aluno.</p>
+        <a href="#precos" style="margin:32px 0 0;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:16px;font-weight:600;transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 28px -6px rgba(3,166,166,.55)">
+          Assinar e elevar minha entrega
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+      <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(28px);transition:opacity .8s ease-out,transform .8s ease-out;display:grid;grid-template-columns:1fr 1fr;gap:20px;width:min(100%,70vh);justify-self:center">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="position:relative;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:2/3">
+            <image-slot id="lp-fabio" shape="rect" src="{{ imgFabio }}" placeholder="Retrato Prof. Fábio Casagrande"></image-slot>
+          </div>
+          <div>
+            <p style="font-size:17px;font-weight:600;color:#f3f3f3">Prof. Fábio Casagrande</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#919294">Idealizador · 30 anos em avaliação e performance</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding-top:44px">
+          <div style="position:relative;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d;overflow:hidden;aspect-ratio:2/3">
+            <image-slot id="lp-didi" shape="rect" src="{{ imgDidi }}" placeholder="Retrato Didi Louzada"></image-slot>
+          </div>
+          <div>
+            <p style="font-size:17px;font-weight:600;color:#f3f3f3">Didi Louzada</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#919294">Sócio · seleção brasileira e ex-NBA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section style="position:relative;padding:clamp(72px,10vh,112px) 24px;background:#181818;border-top:1px solid #2d2d2d;border-bottom:1px solid #2d2d2d">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="max-width:800px;margin:0 auto;text-align:center">
+        <span data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">Antes e depois</span>
+        <h2 data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">Quando sua operação limita sua entrega, crescer deixa de ser vantagem</h2>
+      </div>
+      <div style="margin:56px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+        <div data-reveal="left" style="opacity:0;transform:translateX(-24px);transition:opacity .8s ease-out,transform .8s ease-out;padding:32px;border-radius:16px;border:1px solid #3a3a3a;background:#222222">
+          <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:9999px;background:rgba(234,58,61,.12);border:1px solid rgba(239,99,101,.35);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#ef6365">Antes</span>
+          <div style="margin:24px 0 0;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef6365" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#aaabac">Sua capacidade de atender mais alunos esbarra na falta de tempo</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef6365" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#aaabac">A qualidade da prescrição cai quando a demanda aumenta</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef6365" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#aaabac">O treino perde personalização e passa a parecer genérico</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef6365" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#aaabac">O aluno sente menos valor no acompanhamento e se envolve menos</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef6365" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#aaabac">Você fica preso na operação, com menos espaço para escalar de verdade</p>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="right" data-delay="120" style="opacity:0;transform:translateX(24px);transition:opacity .8s ease-out,transform .8s ease-out;padding:32px;border-radius:16px;border:1px solid rgba(3,166,166,.45);background:#2d2d2d;box-shadow:0 24px 60px -30px rgba(3,166,166,.4)">
+          <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:9999px;background:rgba(3,166,166,.14);border:1px solid rgba(3,166,166,.4);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#04d5d5">Depois</span>
+          <div style="margin:24px 0 0;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#e1e1e1">Sua prescrição ganha mais profundidade, ciência e critério técnico</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#e1e1e1">Você cresce sem abrir mão da qualidade que sustenta sua reputação</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#e1e1e1">O aluno percebe mais valor desde a entrega até o acompanhamento</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#e1e1e1">Sua operação fica mais inteligente, escalável e profissional</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="M20 6 9 17l-5-5"></path></svg>
+              <p style="font-size:16px;line-height:1.55;color:#e1e1e1">Você cria espaço para atender melhor, crescer mais e aumentar sua receita</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:40px 0 0;display:flex;justify-content:center">
+        <a href="#precos" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:17px;font-weight:600;transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 32px -6px rgba(3,166,166,.55)">
+          Quero o depois
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="precos" style="position:relative;padding:clamp(72px,10vh,112px) 24px">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="max-width:760px;margin:0 auto;text-align:center">
+        <span data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#05eded">Planos para Personal Training</span>
+        <h2 data-reveal="up" data-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:16px 0 0;font-size:clamp(30px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3">Escolha o plano ideal para sua carreira</h2>
+        <div data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:32px 0 0;display:inline-flex;align-items:center;gap:4px;padding:4px;border-radius:9999px;border:1px solid #3a3a3a;background:#2d2d2d">
+          <button type="button" onClick="{{ setMensal }}" style="{{ mensalBtn }}">Mensal</button>
+          <button type="button" onClick="{{ setAnual }}" style="{{ anualBtn }}">Anual <span style="font-size:12px;font-weight:600;opacity:.8">−20%</span></button>
+        </div>
+      </div>
+
+      <div style="margin:48px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:stretch">
+        <div data-reveal="up" data-delay="60" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;display:flex;flex-direction:column;padding:32px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d">
+          <h3 style="font-size:22px;font-weight:600;color:#f3f3f3">Starter</h3>
+          <p style="margin:6px 0 0;font-size:15px;color:#919294">1 professor · até 10 alunos</p>
+          <div style="margin:22px 0 0;display:flex;align-items:flex-end;gap:8px">
+            <span style="font-size:44px;font-weight:700;line-height:1;color:#f3f3f3">R$ {{ starterPreco }}</span>
+            <span style="font-size:16px;color:#919294;padding-bottom:4px">{{ sufixo }}</span>
+          </div>
+          <p style="margin:10px 0 0;min-height:22px;font-size:14px;color:#919294">{{ starterEquiv }}</p>
+          <a href="{{ ctaUrl }}" style="margin:24px 0 0;display:inline-flex;align-items:center;justify-content:center;height:48px;border-radius:12px;border:1px solid #48494a;color:#e1e1e1;font-size:16px;font-weight:600;transition:background .2s ease" style-hover="background:#3a3a3a;color:#e1e1e1">Assinar Starter</a>
+          <div style="margin:26px 0 0;height:1px;background:#3a3a3a"></div>
+          <div style="margin:24px 0 0;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Avaliação física completa</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Prescrição manual com protocolos ACSM</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Biblioteca com 6.000+ exercícios</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Treinos prontos e relatórios detalhados</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">App web e mobile</span></div>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-delay="140" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;position:relative;display:flex;flex-direction:column;padding:32px;border-radius:16px;border:1px solid rgba(3,166,166,.55);background:#2d2d2d;box-shadow:0 30px 80px -34px rgba(3,166,166,.5)">
+          <span style="position:absolute;top:-13px;left:32px;display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:9999px;background:#03a6a6;color:#141414;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Mais indicado</span>
+          <h3 style="font-size:22px;font-weight:600;color:#f3f3f3">Pro</h3>
+          <p style="margin:6px 0 0;font-size:15px;color:#919294">1 professor · até 20 alunos</p>
+          <div style="margin:22px 0 0;display:flex;align-items:flex-end;gap:8px">
+            <span style="font-size:44px;font-weight:700;line-height:1;color:#f3f3f3">R$ {{ proPreco }}</span>
+            <span style="font-size:16px;color:#919294;padding-bottom:4px">{{ sufixo }}</span>
+          </div>
+          <p style="margin:10px 0 0;min-height:22px;font-size:14px;color:#04d5d5">{{ proEquiv }}</p>
+          <a href="{{ ctaUrl }}" style="margin:24px 0 0;display:inline-flex;align-items:center;justify-content:center;height:48px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:16px;font-weight:600;transition:background .2s ease" style-hover="background:#038d8d;color:#f3f3f3">Assinar Pro</a>
+          <div style="margin:26px 0 0;height:1px;background:#3a3a3a"></div>
+          <div style="margin:24px 0 0;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">Tudo do Starter</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">15 prescrições com IA por mês</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">Crédito extra de prescrição a R$ 3,99</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">Até 30 exercícios personalizados</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">Biblioteca própria e dashboard de progresso</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#e1e1e1">Suporte por chat</span></div>
+          </div>
+        </div>
+
+        <div data-reveal="up" data-delay="220" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;display:flex;flex-direction:column;padding:32px;border-radius:16px;border:1px solid #3a3a3a;background:#2d2d2d">
+          <h3 style="font-size:22px;font-weight:600;color:#f3f3f3">Premium</h3>
+          <p style="margin:6px 0 0;font-size:15px;color:#919294">1 professor · até 30 alunos</p>
+          <div style="margin:22px 0 0;display:flex;align-items:flex-end;gap:8px">
+            <span style="font-size:44px;font-weight:700;line-height:1;color:#f3f3f3">R$ {{ premiumPreco }}</span>
+            <span style="font-size:16px;color:#919294;padding-bottom:4px">{{ sufixo }}</span>
+          </div>
+          <p style="margin:10px 0 0;min-height:22px;font-size:14px;color:#919294">{{ premiumEquiv }}</p>
+          <a href="{{ ctaUrl }}" style="margin:24px 0 0;display:inline-flex;align-items:center;justify-content:center;height:48px;border-radius:12px;border:1px solid #48494a;color:#e1e1e1;font-size:16px;font-weight:600;transition:background .2s ease" style-hover="background:#3a3a3a;color:#e1e1e1">Assinar Premium</a>
+          <div style="margin:26px 0 0;height:1px;background:#3a3a3a"></div>
+          <div style="margin:24px 0 0;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Tudo do Pro</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">25 prescrições com IA por mês</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Crédito extra de prescrição a R$ 2,49</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Até 50 exercícios personalizados</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Treino aeróbico com planilha</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03a6a6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;line-height:1.5;color:#aaabac">Suporte prioritário</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="up" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out;margin:24px 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding:28px 32px;border-radius:16px;border:1px solid #3a3a3a;background:#222222">
+        <div>
+          <h3 style="font-size:20px;font-weight:600;color:#f3f3f3">Planos corporativos</h3>
+          <p style="margin:8px 0 0;max-width:760px;font-size:16px;line-height:1.55;color:#aaabac">Academias, estúdios e redes com mais de 30 alunos ou múltiplos profissionais. Assistente adicional disponível em qualquer plano por R$ 29,90/mês.</p>
+        </div>
+        <a href="#contato" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;border:1px solid #03a6a6;color:#04d5d5;font-size:16px;font-weight:600;transition:background .2s ease" style-hover="background:rgba(3,166,166,.12);color:#04d5d5">
+          Falar com especialista
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+      <p data-reveal="up" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out;margin:20px 0 0;text-align:center;font-size:14px;color:#919294">Após a compra, você recebe o acesso para baixar o aplicativo e começar a usar.</p>
+    </div>
+  </section>
+
+  <section style="position:relative;padding:120px 24px;background:#181818;border-top:1px solid #2d2d2d;overflow:hidden">
+    <div style="position:absolute;bottom:-320px;left:50%;transform:translateX(-50%);width:1000px;height:640px;background:radial-gradient(50% 50% at 50% 50%,rgba(3,166,166,.18) 0%,rgba(3,166,166,0) 70%);pointer-events:none"></div>
+    <div data-reveal="up" style="opacity:0;transform:translateY(26px);transition:opacity .8s ease-out,transform .8s ease-out;position:relative;max-width:900px;margin:0 auto;text-align:center">
+      <h2 style="font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#f3f3f3;text-wrap:balance">A ferramenta certa melhora sua rotina.<br>A Fitness System eleva sua carreira.</h2>
+      <p style="margin:26px auto 0;max-width:720px;font-size:18px;line-height:1.65;color:#aaabac;text-wrap:pretty">Ao entrar para a Fitness System, você passa a operar com mais ciência, mais critério e mais autoridade — e a entregar algo que o mercado comum não entrega.</p>
+      <p style="margin:20px auto 0;max-width:720px;font-size:18px;line-height:1.65;color:#e1e1e1;font-weight:500">Seu próximo passo não é só usar uma ferramenta melhor. É se transformar em um profissional melhor.</p>
+      <div style="margin:38px 0 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+        <a href="#precos" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border-radius:12px;background:#03a6a6;color:#f3f3f3;font-size:18px;font-weight:600;transition:background .2s ease,box-shadow .3s ease" style-hover="background:#038d8d;color:#f3f3f3;box-shadow:0 0 36px -4px rgba(3,166,166,.6)">
+          Começar minha evolução agora
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;padding:36px 24px 32px;background:#141414">
+    <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <span style="font-size:14px;font-weight:500;color:#aaabac">Fitness System — Da saúde à alta performance. © 2026 — Todos os direitos reservados.</span>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#6d6e6f">
+        <a href="#privacidade" style="color:#aaabac" style-hover="color:#04d5d5">Política de privacidade</a>
+        <span>|</span>
+        <a href="#termos" style="color:#aaabac" style-hover="color:#04d5d5">Termos de uso</a>
+        <span>|</span>
+        <a href="#contato" style="color:#aaabac" style-hover="color:#04d5d5">Falar com especialista</a>
+      </div>
+      <div style="margin:18px 0 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px">
+        <img src="assets/logo-horizontal-cyan.svg" alt="Fitness System" style="height:26px;display:block">
+        <a href="#google-play" aria-label="Disponível no Google Play" style="display:block">
+          <img src="assets/badge-google-play.svg" alt="Disponível no Google Play" style="height:30px;display:block">
+        </a>
+        <a href="#app-store" aria-label="Disponível na App Store" style="display:block">
+          <img src="assets/badge-app-store.png" alt="Disponível na App Store" style="height:30px;display:block">
+        </a>
+        <a href="#instagram" aria-label="Instagram" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#2d2d2d;color:#aaabac;transition:background .2s ease,color .2s ease" style-hover="background:#3a3a3a;color:#04d5d5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg>
+        </a>
+        <a href="#youtube" aria-label="YouTube" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#2d2d2d;color:#aaabac;transition:background .2s ease,color .2s ease" style-hover="background:#3a3a3a;color:#04d5d5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
+        </a>
+      </div>
+  </footer>
+
+  <a id="fs-top" href="#topo" aria-label="Voltar para o topo" style="position:fixed;right:24px;bottom:24px;z-index:70;width:48px;height:48px;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:#2d2d2d;border:1px solid #3a3a3a;color:#04d5d5;box-shadow:0 12px 30px -10px rgba(0,0,0,.8);opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s ease,transform .3s ease,background .2s ease" style-hover="background:#3a3a3a;color:#05eded">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#contato&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Conversão&quot;},&quot;planoPadrao&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mensal&quot;,&quot;anual&quot;],&quot;default&quot;:&quot;mensal&quot;,&quot;tsType&quot;:&quot;'mensal' | 'anual'&quot;,&quot;section&quot;:&quot;Conversão&quot;},&quot;animarScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animação&quot;},&quot;mostrarAutoridade&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;}}">
+class Component extends DCLogic {
+  state = { modo: null };
+
+  get modo() {
+    return this.state.modo || (this.props.planoPadrao === 'anual' ? 'anual' : 'mensal');
+  }
+  get anima() {
+    return this.props.animarScroll !== false;
+  }
+
+  componentDidMount() {
+    this.seen = new WeakSet();
+    this.onScroll = () => {
+      const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const nav = document.getElementById('fs-nav');
+      if (nav) {
+        const on = y > 24;
+        nav.style.background = on ? 'rgba(24,24,24,.85)' : 'transparent';
+        nav.style.backdropFilter = on ? 'blur(16px)' : 'none';
+        nav.style.webkitBackdropFilter = on ? 'blur(16px)' : 'none';
+        nav.style.borderBottomColor = on ? '#2d2d2d' : 'transparent';
+      }
+      const top = document.getElementById('fs-top');
+      if (top) {
+        const on = y > 600;
+        top.style.opacity = on ? '1' : '0';
+        top.style.pointerEvents = on ? 'auto' : 'none';
+        top.style.transform = on ? 'none' : 'translateY(12px)';
+      }
+      const w = window.innerWidth;
+      const links = document.getElementById('fs-navlinks');
+      if (links) links.style.display = w < 1060 ? 'none' : 'flex';
+      const entrar = document.getElementById('fs-nav-entrar');
+      if (entrar) entrar.style.display = w < 560 ? 'none' : 'inline-flex';
+      const bar = document.getElementById('fs-progress');
+      if (bar) {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+      }
+      if (this.anima) {
+        document.querySelectorAll('[data-parallax]').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const mid = r.top + r.height / 2 - window.innerHeight / 2;
+          el.style.transform = 'translate3d(0,' + (mid * parseFloat(el.dataset.parallax)).toFixed(1) + 'px,0)';
+        });
+      }
+      this.wire();
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.timer = setInterval(() => this.onScroll(), 200);
+    this.onScroll();
+  }
+
+  componentDidUpdate() { this.wire(); }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    clearInterval(this.timer);
+  }
+
+  show(el) {
+    const d = parseInt(el.dataset.delay || '0', 10);
+    el.dataset.shown = '1';
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.querySelectorAll('[data-count]').forEach((c) => this.count(c));
+    }, d);
+  }
+
+  count(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    const target = parseFloat(el.dataset.count);
+    const sep = el.dataset.sep === '1';
+    const dur = 1700, t0 = performance.now();
+    const tick = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const v = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      el.textContent = sep ? v.toLocaleString('pt-BR') : String(v);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  wire() {
+    const els = document.querySelectorAll('[data-reveal]');
+    const anima = this.anima;
+    const h = window.innerHeight || 800;
+    els.forEach((el) => {
+      if (el.dataset.shown) {
+        if (el.style.opacity !== '1') { el.style.opacity = '1'; el.style.transform = 'none'; }
+        return;
+      }
+      if (!anima) { el.style.transition = 'none'; this.show(el); return; }
+      const r = el.getBoundingClientRect();
+      if (r.top < h * 0.92 && r.bottom > 0) this.show(el);
+    });
+  }
+
+  pill(ativo) {
+    return {
+      height: '40px', padding: '0 22px', border: 'none', cursor: 'pointer',
+      borderRadius: '9999px', fontFamily: 'inherit', fontSize: '15px', fontWeight: 600,
+      display: 'inline-flex', alignItems: 'center', gap: '6px',
+      background: ativo ? '#03a6a6' : 'transparent',
+      color: ativo ? '#f3f3f3' : '#aaabac',
+      transition: 'background .25s ease, color .25s ease'
+    };
+  }
+
+  renderVals() {
+    const anual = this.modo === 'anual';
+    const p = {
+      starter: { m: '49,90', a: '479', eq: 'No anual, equivale a R$ 39,90/mês · economia de R$ 120' },
+      pro: { m: '89,90', a: '719', eq: 'No anual, equivale a R$ 59,90/mês · economia de R$ 360' },
+      premium: { m: '149,00', a: '1.199', eq: 'No anual, equivale a R$ 99,90/mês · economia de R$ 590' }
+    };
+    const res = (id, path) => (window.__resources && window.__resources[id]) || path;
+    return {
+      imgDash: res('dash', 'assets/img-dashboard.png'),
+      imgApp: res('app', 'assets/img-app-treino.png'),
+      imgProf: res('prof', 'assets/img-professor-avaliacao.png'),
+      imgAval: res('aval', 'assets/img-avaliacao.png'),
+      imgIa: res('ia', 'assets/img-treino-ia.png'),
+      imgFabio: res('fabio', 'assets/img-fabio.png'),
+      imgDidi: res('didi', 'assets/img-didi.png'),
+      ctaUrl: this.props.ctaUrl || '#contato',
+      mostrarAutoridade: this.props.mostrarAutoridade !== false,
+      sufixo: anual ? '/ano' : '/mês',
+      starterPreco: anual ? p.starter.a : p.starter.m,
+      proPreco: anual ? p.pro.a : p.pro.m,
+      premiumPreco: anual ? p.premium.a : p.premium.m,
+      starterEquiv: anual ? p.starter.eq : 'Cobrança mensal, cancele quando quiser',
+      proEquiv: anual ? p.pro.eq : 'Cobrança mensal, cancele quando quiser',
+      premiumEquiv: anual ? p.premium.eq : 'Cobrança mensal, cancele quando quiser',
+      mensalBtn: this.pill(!anual),
+      anualBtn: this.pill(anual),
+      setMensal: () => this.setState({ modo: 'mensal' }),
+      setAnual: () => this.setState({ modo: 'anual' })
+    };
+  }
+}
+</script>
+</body>
+</html>

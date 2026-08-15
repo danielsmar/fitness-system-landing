@@ -1,0 +1,25 @@
+/* Shared styles for preview cards */
+@import url('../colors_and_type.css');
+html, body {
+  margin: 0;
+  background: var(--color-dark-500);
+  color: var(--color-gray-200);
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+.card {
+  padding: 20px 24px;
+  box-sizing: border-box;
+  width: 700px;
+  min-height: 150px;
+}
+.row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 4px; }
+.swatch {
+  width: 80px; height: 80px; border-radius: 10px;
+  display: flex; align-items: flex-end; justify-content: center;
+  font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 11px;
+  color: rgba(255,255,255,0.9); padding-bottom: 6px;
+}
+.label-xs { font-size: 11px; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+.label { font-size: 12px; color: var(--color-gray-400); }
+.hex { font-size: 11px; color: var(--color-gray-200); font-family: 'JetBrains Mono', ui-monospace, monospace; }
